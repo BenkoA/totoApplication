@@ -23,6 +23,6 @@ public class App {
 
         String decimalPattern = "###,###,### Ft";
         DecimalFormat decimalFormat = new DecimalFormat(decimalPattern);
-        System.out.println("The largest prize ever recorded:" + decimalFormat.format(maximumPrize[0]));
+        System.out.println("The largest prize ever recorded: " + decimalFormat.format(maximumPrize[0]));
     }
 }

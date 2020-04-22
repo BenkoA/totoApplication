@@ -40,13 +40,7 @@ public class TotoService {
         item.setYear(Integer.parseInt(dataFromCsvLine[0]));
         item.setWeek(Integer.parseInt(dataFromCsvLine[1]));
 
-        // Round of week
-        if(dataFromCsvLine[2].contains("-")){
-            item.setRoundOfWeek(1);
-        }
-        else {
-            item.setRoundOfWeek(Integer.parseInt(dataFromCsvLine[2]));
-        }
+        item.setRoundOfWeek(this.formatCsvRoundOfWeek(dataFromCsvLine[2]));
 
         // Date
         if (dataFromCsvLine[3].length() >1) {
@@ -56,7 +50,6 @@ public class TotoService {
         else {
             item.setDate(LocalDate.now());
         }
-
 
         List<Hit> hits = new ArrayList<Hit>();
         hits.add(new Hit(14, Integer.parseInt(dataFromCsvLine[4]), this.formatCsvWager(dataFromCsvLine[5])));
@@ -82,6 +75,16 @@ public class TotoService {
 
         return item;
     };
+
+    private int formatCsvRoundOfWeek(String roundOfWeek) {
+        if(roundOfWeek.contains("-")){
+            return 1;
+        }
+        else {
+            return Integer.parseInt(roundOfWeek);
+        }
+
+    }
 
     private int formatCsvWager(String wager) {
         String newWager = wager.replaceAll("\\s+", "");
